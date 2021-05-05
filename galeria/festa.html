@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>Galeria</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+     	 <meta name="viewport" content="width=device-width, initial-scale=1">
+     	 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script src="js/script.js"></script>
+    </head>
+
+    <style>
+    	 @import url("https://fonts.googleapis.com/css?family=Bitter");
+    	 body, .panel panel-default, .panel-body  {
+    	 	background: url(imagens/fundo.jpg)
+    	 }
+
+    	 h2 {
+			color:  #e60000;
+			font-size: 50px;
+			font-weight: 700;
+			letter-spacing: -0.04em;
+			font-family: 'Bitter';
+		}
+
+    </style>
+
+<body>
+	<div id="topo">
+		<h4 style="margin-left: 10px; padding-top: 10px"><a href="../index.html"><i class="fas fa-arrow-circle-left "> Voltar </i></a></h4>
+	 	<h2 align="center">  Conheça nossos modelos </h2>
+	 </div>
+
+	 <div class="whats" align="center">
+        <a href="https://api.whatsapp.com/send?phone=551198450-0191" target="blank"><img src="imagens/wpp.png" class="whats"></a>
+    </div>
+        <main>   
+            <div id="instafeed" class="instafeed"></div>
+            <div class="load-more"><button class="btn" id="load-more">Veja mais</button></div>
+        </main>
+</body>
+<script src="https://cdn.shopify.com/s/files/1/0683/5883/t/3/assets/instafeed.min.js"></script>
+ <script src="instafeed.js"></script>
+ <script>
+ 	var loadButton = document.getElementById('load-more');
+	var feed = new Instafeed({
+    get: 'user',
+    userId: 7580262878,
+    accessToken: '7580262878.1677ed0.9e85d0f3de0e40f88ced087e5ecb4c00',
+    target: 'instafeed',
+    resolution: 'standard_resolution',
+    limit: 6,
+    template: '<div class="single-image"><a href="{{link}}"><img src="{{image}}" title="{{caption}}"/></a></div>',
+    after: function () {
+        if (!this.hasNext()) {
+            loadButton.setAttribute('disabled', 'disabled');
+        }
+    },
+});
+loadButton.addEventListener('click', function () {
+    feed.next();
+});
+feed.run();
+ </script>
+</html>
